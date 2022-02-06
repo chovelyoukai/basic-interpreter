@@ -1,0 +1,32 @@
+statement ::= 'PRINT' (string | expr)
+| 'PRINTLN' (string | expr)
+| 'CLS'
+| 'IF' condition 'THEN' statement
+| 'GOTO' label
+| 'GOSUB' label
+| 'INPUT' variable
+| 'LET' variable 'BE' expr
+| 'GET' variable 'FROM' expr
+| 'PUT' variable 'AT' expr
+| 'RETURN'
+| 'END'
+| 'SLEEP' expr
+| label 
+| comment
+
+condition ::= expr RelOp expr
+RelOp ::= '=' | '<' | '>' | '<=' | '>=' | '!='
+
+label ::= ':'characters
+
+expr ::= term [('+'|'-') expr]
+term ::= factor [('*'|'/') term]
+factor ::= primary ['^' factor]
+primary ::= number | variable | random | '-'primary | '('expr')'
+random ::= 'RND' expr
+
+variable ::= characters
+characters ::= (A-Z | a-z | 0-9)+
+string ::= '"' (E - '"')* '"'
+
+comment ::= '#' E*
